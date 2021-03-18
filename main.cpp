@@ -4,13 +4,10 @@
 #include <string>
 
 using namespace std;
-
 int main(){
-    
     bool partiegagnee = false;
     Tictactoe jeu = Tictactoe();
     int numeroCase;
-
     while(partiegagnee != true && jeu.testeJeuNul() == false){
         jeu.finTour();
         jeu.afficheGrille();
@@ -20,8 +17,7 @@ int main(){
     }
     
     jeu.afficheGrille();
-    if(jeu.testeVictoireDiagonale() == true || jeu.testeVictoireHorizontale() == true || jeu.testeVictoireVerticale() == true){cout << "Le joueur " << jeu.getSymboleCourant() << " a gagné !" << endl;}
-    else {cout << "Personne ne gagne.";}
-
-    cout << jeu.testeVictoireDiagonale() << endl << jeu.testeVictoireHorizontale() << endl << jeu.testeVictoireVerticale();
+    if(jeu.testeVictoireDiagonale() == true || jeu.testeVictoireHorizontale() == true || jeu.testeVictoireVerticale() == true){
+        cout << "Le joueur " << jeu.getSymboleCourant() << " a gagné !" << endl;
+    } else {cout << "Personne ne gagne.";}
 }
