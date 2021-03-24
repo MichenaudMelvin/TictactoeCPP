@@ -1,11 +1,14 @@
 #ifndef GRILLE_H
 #define GRILLE_H
 
+#include <vector>
 #include <string>
 
 class Grille{
     private:
         char _cases[9];
+        std::vector<char> _casesDynamiques;
+        int position;
         // on considèrera que les 3 premières cases sur la 1ere ligne : (0,0) (0,1) (0,2)
         // les 3 suivantes sont la 2nde ligne : (1,0) (1,1) (1,2)
         // les 3 suivantes de la 3e ligne : (2,0) (2,1) (2,2)

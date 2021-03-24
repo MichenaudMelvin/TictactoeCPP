@@ -6,9 +6,16 @@
 
 Grille::Grille(){resetContent();}
 
-char Grille::getContent(int x, int y){return _cases[x+(y)*3];}
+char Grille::getContent(int x, int y){
+    return _cases[x+(y)*3];
+    return _casesDynamiques[x+(y)*3];
+}
 
-void Grille::setContent(int x, int y, char nouveauContenu){_cases[x+(y)*3] = nouveauContenu;}
+void Grille::setContent(int x, int y, char nouveauContenu){
+    position = x+(y*3);
+    _cases[position] = nouveauContenu;
+    // _casesDynamiques.insert(position, nouveauContenu);
+}
 
 void Grille::affiche(){
     for(int j=0;j<3;j++){
@@ -22,5 +29,8 @@ void Grille::affiche(){
     }
 }
 
-void Grille::resetContent(){for(int i=0;i<9;i++) _cases[i] = ' ';}
+void Grille::resetContent(){
+    for(int i=0;i<9;i++) _cases[i] = ' ';
+    for(int i=0;i<9;i++) _casesDynamiques.push_back('X');
+}
 #endif

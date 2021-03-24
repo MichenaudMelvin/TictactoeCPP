@@ -5,19 +5,22 @@
 
 using namespace std;
 int main(){
-    bool partiegagnee = false;
-    Tictactoe jeu = Tictactoe();
-    int numeroCase;
-    while(partiegagnee != true && jeu.testeJeuNul() == false){
-        jeu.finTour();
-        jeu.afficheGrille();
-        cin >> numeroCase;
-        jeu.ajouteSymbole(numeroCase%3,numeroCase/3);
-        partiegagnee = jeu.testeVictoireDiagonale() || jeu.testeVictoireHorizontale() || jeu.testeVictoireVerticale();
-    }
+    // bool partiegagnee = false;
+    // Tictactoe jeu = Tictactoe();
+    Grille test = Grille();
+
+    test.affiche();
+    // int numeroCase;
+    // while(partiegagnee != true && jeu.testeJeuNul() == false){
+    //     jeu.finTour();
+    //     jeu.afficheGrille();
+    //     cin >> numeroCase;
+    //     jeu.ajouteSymbole(numeroCase%3,numeroCase/3);
+    //     partiegagnee = jeu.testeVictoireDiagonale() || jeu.testeVictoireHorizontale() || jeu.testeVictoireVerticale();
+    // }
     
-    jeu.afficheGrille();
-    if(jeu.testeVictoireDiagonale() == true || jeu.testeVictoireHorizontale() == true || jeu.testeVictoireVerticale() == true){
-        cout << "Le joueur " << jeu.getSymboleCourant() << " a gagné !" << endl;
-    } else {cout << "Personne ne gagne.";}
+    // jeu.afficheGrille();
+    // if(jeu.testeVictoireDiagonale() == true || jeu.testeVictoireHorizontale() == true || jeu.testeVictoireVerticale() == true){
+    //     cout << "Le joueur " << jeu.getSymboleCourant() << " a gagné !" << endl;
+    // } else {cout << "Personne ne gagne.";}
 }
