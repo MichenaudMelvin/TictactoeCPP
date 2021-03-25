@@ -3,7 +3,7 @@
 #include "Grille.h"
 #include "Tictactoe.h"
 #include <iostream>
-Tictactoe::Tictactoe(): symboleCourant('O'){}
+Tictactoe::Tictactoe():symboleCourant('O'){numeroTour = 0;}
 
 void Tictactoe::afficheGrille(){grilleDeJeu.affiche();}
 

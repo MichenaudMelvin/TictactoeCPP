@@ -7,9 +7,7 @@ using namespace std;
 int main(){
     // bool partiegagnee = false;
     // Tictactoe jeu = Tictactoe();
-    Grille test = Grille();
-
-    test.affiche();
+    
     // int numeroCase;
     // while(partiegagnee != true && jeu.testeJeuNul() == false){
     //     jeu.finTour();
@@ -23,4 +21,7 @@ int main(){
     // if(jeu.testeVictoireDiagonale() == true || jeu.testeVictoireHorizontale() == true || jeu.testeVictoireVerticale() == true){
     //     cout << "Le joueur " << jeu.getSymboleCourant() << " a gagné !" << endl;
     // } else {cout << "Personne ne gagne.";}
+    
+    Grille test = Grille(6, 7);
+    test.affichageGrilleDynamique();
 }
