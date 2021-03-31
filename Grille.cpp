@@ -4,53 +4,40 @@
 #include "Grille.h"
 #include <iostream>
 
-Grille::Grille(){
-    _casesDynamiques = std::vector<char>(9, ' ');
-    resetContent();
-}
-
-char Grille::getContent(int x, int y){return _casesDynamiques[x+(y)*3];}
-
-void Grille::setContent(int x, int y, char nouveauContenu){_casesDynamiques[x+(y*3)] = nouveauContenu;}
-
-void Grille::affiche(){
-    for(int j=0;j<3;j++){
-        for(int i=0;i<3;i++){
-            std::cout << this->getContent(i,j);
-            if(i!=3)
-                std::cout << " | ";
-        } std::cout << std::endl;
-        if(j!=3)
-        std::cout << " ------- " << std::endl;
+    Grille::Grille() : _nombreColonnes(3), _nombreLignes(3) { 
+        _tableau = std::vector<char>(9,' ');
+        resetContent(); 
     }
-}
+    
+    Grille::Grille(int nbColonnes, int nbLignes) : _nombreLignes(nbLignes), _nombreColonnes(nbColonnes) {
+        _tableau = std::vector<char>(nbColonnes * nbLignes,' ');
+    }
 
-void Grille::resetContent(){for(int i=0;i<9;i++) _casesDynamiques[i] = (' ');}
+    // renvoie le contenu de la case de coordonnées x,y dans [0;2]
+    char Grille::getContent(int x, int y){ return _tableau[x+(y)*_nombreColonnes]; }    
 
-//pour tableau dynamiques
-Grille::Grille(int x, int y): _nombreColones(x), _nombreLignes(y), _tailleTableau(x * y){
-    _casesDynamiques = std::vector<char>(_tailleTableau, ' ');
-    resetContentDynamique();
-}
+        // ajoute un contenu dans une case de coordonnées x,y dans [0;2]
+        // le contenu est un entier non nul
+    void Grille::setContent(int x, int y, char nouveauContenu){
+        _tableau[x+(y)*_nombreColonnes] = nouveauContenu;
+    }
 
-char Grille::getContentDynamique(int x, int y){
-    return _casesDynamiques[x+y*_nombreColones];
-}
-
-void Grille::affichageGrilleDynamique(){
-    for(int j=0;j<_nombreLignes;j++){
-        for(int i=0;i<_nombreColones;i++){
-            std::cout << this->getContentDynamique(i,j);
-            if(i!=_nombreLignes-1)
-                std::cout << " | ";
-        } std::cout << std::endl;
-        if(j!=(_nombreColones-1)){
-        for(int tailleColonne=0;tailleColonne<_nombreLignes;tailleColonne++){std::cout << "----";}
-        std::cout << std::endl;
+    void Grille::affiche(){
+        for(int j=0;j<_nombreLignes;j++){
+            for(int i=0;i<_nombreColonnes;i++){
+                std::cout << this->getContent(i,j);
+                if(i!=_nombreColonnes-1)  std::cout << " | ";
+            }
+            std::cout << std::endl;
+            if(j!=_nombreLignes-1){
+                for(int tailleColonne=0;tailleColonne<_nombreLignes;tailleColonne++){
+                    std::cout << "----";
+                }
+            }  std::cout << std::endl;
         }
     }
-}
 
-void Grille::resetContentDynamique(){for(int i=0;i<_tailleTableau;i++) _casesDynamiques[i] = (' ');}
+    void Grille::resetContent(){for(int i=0;i<_nombreLignes*_nombreColonnes;i++) _tableau[i] = ' ';}
+
 
 #endif

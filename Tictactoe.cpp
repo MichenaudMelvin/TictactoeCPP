@@ -1,47 +1,60 @@
 #ifndef TICTACTOE_CPP
 #define TICTACTOE_CPP
+
 #include "Grille.h"
 #include "Tictactoe.h"
 #include <iostream>
-Tictactoe::Tictactoe():symboleCourant('O'){numeroTour = 0;}
 
-void Tictactoe::afficheGrille(){grilleDeJeu.affiche();}
 
-void Tictactoe::ajouteSymbole(int x, int y){grilleDeJeu.setContent(x, y, symboleCourant);}
+    Tictactoe::Tictactoe() : _symboleCourant('X') {}
 
-bool Tictactoe::testeVictoireVerticale(){
-    for(int i=0;i<3;i++){
-        if((grilleDeJeu.getContent(0, i) == grilleDeJeu.getContent(1, i) && (grilleDeJeu.getContent(2, i) == 'X' || grilleDeJeu.getContent(0, i) == 'O')) && (grilleDeJeu.getContent(1, i) == grilleDeJeu.getContent(2, i) && (grilleDeJeu.getContent(1, i) == 'X' || grilleDeJeu.getContent(1, i) == 'O')) && (grilleDeJeu.getContent(0, i) == grilleDeJeu.getContent(2, i) && (grilleDeJeu.getContent(2, i) == 'X' || grilleDeJeu.getContent(2, i) == 'O'))){return true;}
+    void Tictactoe::afficheGrille(){
+        _grilleDeJeu.affiche();
     }
-}
-        
 
-bool Tictactoe::testeVictoireHorizontale(){
-    for(int i=0;i<3;i++){
-        if((grilleDeJeu.getContent(i, 0) == grilleDeJeu.getContent(i, 1) && (grilleDeJeu.getContent(i, 0) == 'X' || grilleDeJeu.getContent(i, 0) == 'O')) && (grilleDeJeu.getContent(i, 1) == grilleDeJeu.getContent(i, 2) && (grilleDeJeu.getContent(i, 1) == 'X' || grilleDeJeu.getContent(i, 1) == 'O')) && (grilleDeJeu.getContent(i, 0) == grilleDeJeu.getContent(i, 2) && (grilleDeJeu.getContent(i, 2) == 'X' || grilleDeJeu.getContent(i, 2) == 'O'))){return true;}
+    void Tictactoe::ajouteSymbole(int x, int y){
+        _grilleDeJeu.setContent(x,y,_symboleCourant);
     }
-}
 
-bool Tictactoe::testeVictoireDiagonale(){
-    if(grilleDeJeu.getContent(1, 1) == 'X' || grilleDeJeu.getContent(1, 1) == 'O'){
-        if(grilleDeJeu.getContent(1, 1) == 'X'){
-            if((grilleDeJeu.getContent(0, 0) == 'X' && grilleDeJeu.getContent(2, 2) == 'X') || (grilleDeJeu.getContent(0, 2) == 'X' && grilleDeJeu.getContent(2, 0) == 'X')){return true;}
-        } else if (grilleDeJeu.getContent(1, 1) == 'O'){
-            if((grilleDeJeu.getContent(0, 0) == 'O' && grilleDeJeu.getContent(2, 2) == 'O') || (grilleDeJeu.getContent(0, 2) == 'O' && grilleDeJeu.getContent(2, 0) == 'O')){return true;}
-            }
+    bool Tictactoe::testeVictoireVerticale(){
+        for(int i=0;i<2;i++){
+            if(_grilleDeJeu.getContent(0,i)==_grilleDeJeu.getContent(1,i)
+            && _grilleDeJeu.getContent(0,i)==_grilleDeJeu.getContent(2,i)
+            && _grilleDeJeu.getContent(0,i)!=' ')
+            {return true;}
         }
-}
+        return false;
+    }
 
-bool Tictactoe::testeJeuNul(){
-    if(numeroTour >= 9){return true;}
-    else{return false;}
-}
+    bool Tictactoe::testeVictoireHorizontale(){
+        for(int i=0;i<2;i++){
+            if(_grilleDeJeu.getContent(i,0)==_grilleDeJeu.getContent(i,1)
+            && _grilleDeJeu.getContent(i,0)==_grilleDeJeu.getContent(i,2)
+            && _grilleDeJeu.getContent(i,0)!=' ')
+            {return true;}
+        }
+        return false;   
+    }
 
-void Tictactoe::finTour(){
-    numeroTour++;
-    std::cout << "Tour n°" << numeroTour << std::endl;
-    symboleCourant == 'X'?symboleCourant = 'O':symboleCourant = 'X';
-}
+    bool Tictactoe::testeVictoireDiagonale(){
+        if(_grilleDeJeu.getContent(0,0)==_grilleDeJeu.getContent(1,1)
+            && _grilleDeJeu.getContent(0,0)==_grilleDeJeu.getContent(2,2)
+            && _grilleDeJeu.getContent(0,0)!=' ')
+            {return true;}
+        if(_grilleDeJeu.getContent(2,0)==_grilleDeJeu.getContent(1,1)
+            && _grilleDeJeu.getContent(2,0)==_grilleDeJeu.getContent(0,2)
+            && _grilleDeJeu.getContent(2,0)!=' ')
+            {return true;}
+        return false;
+    }
 
-char Tictactoe::getSymboleCourant(){return symboleCourant;}
+    bool Tictactoe::testeJeuNul(){
+        return _numeroTour==10;
+        }
+
+    void Tictactoe::finTour(){
+        _symboleCourant=='X'?_symboleCourant='O':_symboleCourant='X';
+        _numeroTour++;
+   }
+
 #endif

@@ -5,10 +5,12 @@
 #include <string>
 
 class Tictactoe{
+
     private:
-        Grille grilleDeJeu;
-        int numeroTour;
-        char symboleCourant;
+        Grille _grilleDeJeu;
+        int _numeroTour;
+        char _symboleCourant;
+
     public:
         Tictactoe();
         void afficheGrille();
@@ -17,8 +19,9 @@ class Tictactoe{
         bool testeVictoireHorizontale();
         bool testeVictoireDiagonale();
         bool testeJeuNul();
+
         void finTour();
-        char getSymboleCourant();
+
 };
 
 #endif
