@@ -14,7 +14,7 @@
     }
 
     // renvoie le contenu de la case de coordonnées x,y dans [0;2]
-    char Grille::getContent(int x, int y){ return _tableau[x+(y)*_nombreColonnes]; }    
+    char Grille::getContent(int x, int y){return _tableau[x+(y)*_nombreColonnes];}
 
         // ajoute un contenu dans une case de coordonnées x,y dans [0;2]
         // le contenu est un entier non nul
