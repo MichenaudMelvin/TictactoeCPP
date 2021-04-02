@@ -21,6 +21,7 @@ class Puissance_4{
         bool testeVictoireHorizontale();
         bool testeVictoireDiagonale();
         bool testeJeuNul();
+        char getSymboleCourant();
 
         void finTour();
 

@@ -33,12 +33,25 @@
     }
 
     bool Puissance_4::testeVictoireHorizontale(){
-
+        for(int j=0;j<_nombreLigne;j++){
+            for(int i=0;i<_nombreColonne;i++){
+                if((_grilleDeJeu.getContent(j, i) == 'X' || _grilleDeJeu.getContent(j, i) == 'O') && _grilleDeJeu.getContent(j, i) == _grilleDeJeu.getContent(j+1, i) && _grilleDeJeu.getContent(j, i) == _grilleDeJeu.getContent(j+2, i) && _grilleDeJeu.getContent(j, i) == _grilleDeJeu.getContent(j+3, i)){
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
     bool Puissance_4::testeVictoireDiagonale(){
-        
+        for(int j=0;j<_nombreLigne;j++){
+            for(int i=0;i<_nombreColonne;i++){
+                if(((_grilleDeJeu.getContent(j, i) == 'X' || _grilleDeJeu.getContent(j, i) == 'O') && _grilleDeJeu.getContent(j, i) == _grilleDeJeu.getContent(j+1, i+1) && _grilleDeJeu.getContent(j, i) == _grilleDeJeu.getContent(j+2, i+2) && _grilleDeJeu.getContent(j, i) == _grilleDeJeu.getContent(j+3, i+3))
+                || ((_grilleDeJeu.getContent(j, i) == 'X' || _grilleDeJeu.getContent(j, i) == 'O') && _grilleDeJeu.getContent(j, i) == _grilleDeJeu.getContent(j-1, i+1) && _grilleDeJeu.getContent(j, i) == _grilleDeJeu.getContent(j-2, i+2) && _grilleDeJeu.getContent(j, i) == _grilleDeJeu.getContent(j-3, i+3))){
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -49,6 +62,11 @@
     void Puissance_4::finTour(){
         _symboleCourant=='X'?_symboleCourant='O':_symboleCourant='X';
         _numeroTour = _numeroTour + 1;
+    }
+
+    char Puissance_4::getSymboleCourant(){
+        _symboleCourant=='X'?_symboleCourant='O':_symboleCourant='X';
+        return _symboleCourant;
     }
 
 #endif

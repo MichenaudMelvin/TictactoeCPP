@@ -35,17 +35,17 @@ int main(){
     cout << partiegagnee << endl;
 
     Puissance_4 grille_puissance_12 = Puissance_4();
-    while(partiegagnee != true){
-        grille_puissance_12.afficheGrille();
+    grille_puissance_12.afficheGrille();
+    while(partiegagnee != true && grille_puissance_12.testeJeuNul() != 42){
         cin >> numeroCase;
         grille_puissance_12.ajouteSymbole(numeroCase, numeroCase);
         grille_puissance_12.finTour();
-        // cout << grille_puissance_12.testeJeuNul() << endl;
-        partiegagnee = grille_puissance_12.testeVictoireVerticale();
-        cout << partiegagnee << endl;
+        grille_puissance_12.afficheGrille();
+        partiegagnee = grille_puissance_12.testeVictoireVerticale() || grille_puissance_12.testeVictoireHorizontale() || grille_puissance_12.testeVictoireDiagonale();
     }
-    grille_puissance_12.afficheGrille();
-    grille_puissance_12.afficheGrille();
+
+    cout << "Victoire du joueur " << grille_puissance_12.getSymboleCourant() << " !";
+
 
     /*
     while(!partiegagnee && !jeu.testeJeuNul()){
