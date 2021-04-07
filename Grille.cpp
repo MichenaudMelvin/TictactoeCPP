@@ -18,10 +18,15 @@
 
         // ajoute un contenu dans une case de coordonnées x,y dans [0;2]
         // le contenu est un entier non nul
-    void Grille::setContent(int x, int y, char nouveauContenu){
+    bool Grille::setContent(int x, int y, char nouveauContenu){
         if(_tableau[x+(y)*_nombreColonnes] == 'X' || _tableau[x+(y)*_nombreColonnes] == 'O'){
             std::cout << "Vous ne pouvez pas mettre un truc ici" << std::endl;
-        } else{
+            return false;
+        } 
+        // else if(_tableau[x+(y)*_nombreColonnes] == ){
+
+        // } 
+        else{
             _tableau[x+(y)*_nombreColonnes] = nouveauContenu;
             for(int i=1; i<_nombreLignes;i++){
                 if(_tableau[(x+(y)*_nombreColonnes)+7*i] == ' '){
@@ -29,6 +34,7 @@
                     _tableau[(x+7*i)+(y)*_nombreColonnes] = nouveauContenu;
                 }
             }
+            return true;
         }
     }
 

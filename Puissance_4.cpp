@@ -6,7 +6,7 @@
 #include <math.h>
 #include <iostream>
 
-    Puissance_4::Puissance_4() : _symboleCourant('X'), _grilleDeJeu(7,6){
+    Puissance_4::Puissance_4() : _symboleCourant('X'), _grilleDeJeu(7,6), _numeroTour(0){
         _nombreColonne = 7;
         _nombreLigne = 6;
     }
@@ -18,7 +18,10 @@
     void Puissance_4::ajouteSymbole(int x, int y){
         y = (floor (y/7));
         x = x -7 * y;
-        _grilleDeJeu.setContent(x,y,_symboleCourant);
+        if((_grilleDeJeu.setContent(x,y,_symboleCourant) == false)){
+            _numeroTour = _numeroTour - 1;
+            _symboleCourant=='X'?_symboleCourant='O':_symboleCourant='X';
+        }
     }
 
     bool Puissance_4::testeVictoireVerticale(){
