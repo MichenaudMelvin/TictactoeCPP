@@ -1,7 +1,7 @@
 #include "Grille.cpp"
 #include "Tictactoe.cpp"
 #include "Puissance_4.cpp"
-#include "JeuGrille.cpp"
+#include "JeuGrille.h"
 #include <iostream>
 #include <math.h>
 #include <string>
@@ -23,40 +23,20 @@ int main(){
     int numeroCase;
     bool choixIsDone = false;
     string choixJoueur;
-    Tictactoe jeuTicTacToe = Tictactoe();
-    Puissance_4 jeuPuissance_4 = Puissance_4();
-    JeuGrille monJeu = JeuGrille();
+    JeuGrille * monJeu;
 
     while (choixIsDone == false){
         cout << "Entrez le choix de votre jeu \"TicTacToe\" ou \"Puissance_4\"" << endl;
         cin >> choixJoueur;
         if(choixJoueur == "TicTacToe" || choixJoueur == "tictactoe" || choixJoueur == "ticTacToe" || choixJoueur == "TictacToe" || choixJoueur == "TicTactoe"){
-            monJeu = jeuTicTacToe;
+            monJeu = new Tictactoe();
             choixIsDone = true;
-        } else if(choixJoueur == "Puissance_4" || choixJoueur == "puissance_4" || choixJoueur == "Puissance4" || choixJoueur == "puissance4"){
-            monJeu = jeuPuissance_4;
+        } else if(choixJoueur == "Puissance_4" || choixJoueur == "puissance_4" || choixJoueur == "Puissance4" || choixJoueur == "puissance4" || choixJoueur == "puiss4" ||
+        choixJoueur == "puiss_4" || choixJoueur == "Puiss4" || choixJoueur == "Puiss_4"){
+            monJeu = new Puissance_4();
             choixIsDone = true;
         } else{
             cout << "Ce choix n'existe pas, veuillez ressayer" << endl;
-        }
-    }
-
-    if(monJeu == jeuTicTacToe){
-        while(partiegagnee != true && !monJeu.testeJeuNul()){
-            cin >> numeroCase;
-            monJeu.ajouteSymbole(numeroCase, numeroCase);
-            monJeu.finTour();
-            monJeu.afficheGrille();
-            partiegagnee = monJeu.testeVictoireVerticale() || monJeu.testeVictoireHorizontale() || monJeu.testeVictoireDiagonale();
-        }
-    }
-    else if(monJeu == jeuPuissance_4){
-        while(!partiegagnee && !monJeu.testeJeuNul()){
-            monJeu.afficheGrille();
-            cin >> numeroCase;
-            monJeu.ajouteSymbole(numeroCase%3,numeroCase/3);
-            partiegagnee = monJeu.testeVictoireDiagonale() || monJeu.testeVictoireHorizontale() || monJeu.testeVictoireVerticale();
-            monJeu.finTour();
         }
     }
 
@@ -72,18 +52,18 @@ int main(){
     // if(partiegagnee == true){cout << "Victoire du joueur " << grille_puissance_12.getSymboleCourant() << " !";}
     // else{cout << "Personne ne gagne";}
 
-
-    /*
-    while(!partiegagnee && !monJeu.testeJeuNul()){
+    while(!partiegagnee && !monJeu->testeJeuNul()){
         
-        monJeu.afficheGrille();
+        monJeu->afficheGrille();
         std::cin >> numeroCase;
-        monJeu.ajouteSymbole(numeroCase%3,numeroCase/3);
-        partiegagnee = monJeu.testeVictoireDiagonale() || monJeu.testeVictoireHorizontale() || monJeu.testeVictoireVerticale();
-        monJeu.finTour();
+        monJeu->ajouteSymbole(numeroCase%3,numeroCase/3);
+        partiegagnee = monJeu->testeVictoireDiagonale() || monJeu->testeVictoireHorizontale() || monJeu->testeVictoireVerticale();
+        monJeu->finTour();
     }
-    */
-    
+    monJeu->afficheGrille();
+    if(partiegagnee == true){
+        cout << "Victoire du joueur ", monJeu->getSymboleCourant();
+    } else {cout << "Match nul";}
     
     return 0;
 }

@@ -2,9 +2,10 @@
 #define PUISSANCE_4_H
 
 #include "Grille.h"
+#include "JeuGrille.h"
 #include <string>
 
-class Puissance_4{
+class Puissance_4 : public JeuGrille{
 
     private:
         Grille _grilleDeJeu;

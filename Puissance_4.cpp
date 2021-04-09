@@ -6,10 +6,7 @@
 #include <math.h>
 #include <iostream>
 
-    Puissance_4::Puissance_4() : _symboleCourant('X'), _grilleDeJeu(7,6), _numeroTour(0){
-        _nombreColonne = 7;
-        _nombreLigne = 6;
-    }
+    Puissance_4::Puissance_4() : _symboleCourant('X'), _nombreColonne(7), _nombreLigne(6), _grilleDeJeu(7,6), _numeroTour(0){}
 
     void Puissance_4::afficheGrille(){
         _grilleDeJeu.affiche();
