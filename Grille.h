@@ -2,6 +2,7 @@
 #define GRILLE_H
 
 #include <string>
+#include "Affichage.h"
 #include <vector>
 
 class Grille{
@@ -12,6 +13,7 @@ class Grille{
         // les 3 suivantes sont la 2nde ligne : (1,0) (1,1) (1,2)
         // les 3 suivantes de la 3e ligne : (2,0) (2,1) (2,2)
         std::vector<char> _tableau;
+        Affichage _affichage;
         int _nombreColonnes;
         int _nombreLignes;
         

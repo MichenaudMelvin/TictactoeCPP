@@ -1,6 +1,7 @@
 #include "Grille.cpp"
 #include "Tictactoe.cpp"
 #include "Puissance4.cpp"
+#include "Affichage.cpp"
 #include "JeuGrille.h"
 #include <iostream>
 #include <string>
@@ -18,8 +19,6 @@ int main(){
      
     int numeroCase;
 
-
-
     while(!partiegagnee && !(jeu->testeJeuNul())){
         
         jeu->afficheGrille();
@@ -30,7 +29,5 @@ int main(){
         jeu->finTour();
     }
 
-    
-    
     return 0;
 }
