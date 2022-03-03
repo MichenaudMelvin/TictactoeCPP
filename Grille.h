@@ -1,8 +1,24 @@
 #ifndef GRILLE_H
 #define GRILLE_H
 
+class AffStrategy{
+public:
+    virtual ~AffStrategy() {}
+    virtual std::string execute() const = 0;
+};
+
+class AffichageA : public AffStrategy{
+public:
+    std::string execute() const override { /* ici insérez algo affichage A */   }
+};
+
+class AffichageB : public AffStrategy{
+public:
+    std::string execute() const override { /* ici insérez algo affichage B */   }
+};
+
 #include <string>
-#include "Affichage.h"
+#include "InterfaceStrategie.h"
 #include <vector>
 
 class Grille{
@@ -13,7 +29,7 @@ class Grille{
         // les 3 suivantes sont la 2nde ligne : (1,0) (1,1) (1,2)
         // les 3 suivantes de la 3e ligne : (2,0) (2,1) (2,2)
         std::vector<char> _tableau;
-        Affichage _affichage;
+        AffStrategy *strategy_;
         int _nombreColonnes;
         int _nombreLignes;
         
@@ -30,7 +46,11 @@ class Grille{
 
         void affiche();
         // affiche la grille conformément au système de coordonnées
-        
+
+        void selectStrat();
+
+        void set_strategy(AffStrategy *strategy);
+
         Grille();
         // initialise la grille avec les cases toutes à 0
         Grille(int nbColonnes, int nbLignes);

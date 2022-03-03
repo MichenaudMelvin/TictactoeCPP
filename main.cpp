@@ -6,7 +6,6 @@
 #include <iostream>
 #include <string>
 
-
 int main(){
 
     bool partiegagnee = false;
@@ -15,7 +14,7 @@ int main(){
     std::cout << "TTT (0) ou P4 (1) ?" << std::endl;
     int choix;
     std::cin >> choix;
-    if(choix==0) { jeu = new Tictactoe();} else {jeu = new Puissance4();}
+    if(choix == 0){jeu = new Tictactoe();} else{jeu = new Puissance4();}
      
     int numeroCase;
 
