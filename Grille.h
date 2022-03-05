@@ -1,35 +1,18 @@
 #ifndef GRILLE_H
 #define GRILLE_H
 
-class AffStrategy{
-public:
-    virtual ~AffStrategy() {}
-    virtual std::string execute() const = 0;
-};
-
-class AffichageA : public AffStrategy{
-public:
-    std::string execute() const override { /* ici insérez algo affichage A */   }
-};
-
-class AffichageB : public AffStrategy{
-public:
-    std::string execute() const override { /* ici insérez algo affichage B */   }
-};
-
 #include <string>
-#include "InterfaceStrategie.h"
+#include <iostream>
+#include "AffStrategy.h"
 #include <vector>
 
 class Grille{
-
     private:
-
         // on considèrera que les 3 premières cases sur la 1ere ligne : (0,0) (0,1) (0,2)
         // les 3 suivantes sont la 2nde ligne : (1,0) (1,1) (1,2)
         // les 3 suivantes de la 3e ligne : (2,0) (2,1) (2,2)
         std::vector<char> _tableau;
-        AffStrategy *strategy_;
+        AffStrategy *_affichage;
         int _nombreColonnes;
         int _nombreLignes;
         

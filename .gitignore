@@ -1,5 +1,4 @@
 
 *.json
-main.exe
 *.exe
-*.exe
+*.vscode

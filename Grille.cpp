@@ -2,14 +2,13 @@
 #define GRILLE_CPP
 
 #include "Grille.h"
-#include "Strat1.cpp"
-#include "Strat2.cpp"
-#include "InterfaceStrategie.cpp"
+#include "AffichageA.h"
+#include "AffichageB.h"
 #include <iostream>
 
     Grille::Grille() : _nombreColonnes(3), _nombreLignes(3) {
         _tableau = std::vector<char>(9,' ');
-        selectStrat();
+        // selectStrat();
         resetContent();
     }
     
@@ -42,38 +41,40 @@
         for(int j=0;j<_nombreLignes;j++){
             for(int i=0;i<_nombreColonnes;i++){
                 std::cout << this->getContent(i,j);
-                if(i!=_nombreColonnes-1)  std::cout << _affichage.execute("Verti");
+                if(i!=_nombreColonnes-1)  std::cout << /*_affichage.execute("Verti")*/ " | ";
             }
             std::cout << std::endl;
-            if(j!=_nombreLignes-1)  std::cout << _affichage.execute("Hori") << std::endl;
+            if(j!=_nombreLignes-1)  std::cout << /*_affichage.execute("Hori")*/ " ----- "<< std::endl;
         }
     }
 
+    void Grille::selectStrat(){
+        std::string strat;
+        std::cout << "Select Strat (A ou B) : ";
+        std::cin >> strat;
+        AffStrategy *strategy;
 
+        if(strat == "A"){
+            // *strategy = new AffichageA();
+        } else if(strat == "B"){
+            // *strategy = new AffichageB();
+        }
 
-    // void Grille::selectStrat(){
-    //     std::string strat;
-    //     std::cout << "Select Strat (1 ou 2) : ";
-    //     std::cin >> strat;
+        if(strat != "A" && strat != "B"){
+            selectStrat();
+            return;
+        }
 
-    //     if(strat == "1"){
-    //         _affichage = Strat1();
-    //     } else if(strat == "2"){
-    //         _affichage = Strat2();
-    //     }
-
-    //     if(strat != "1" && strat != "2"){
-    //         selectStrat();
-    //     }
-    // }
+        this->set_strategy(strategy);
+    }
 
     void Grille::affiche(){
-        this->strategy_->execute();
+        this->_affichage->execute();
     }
 
     void Grille::set_strategy(AffStrategy *strategy){
-        delete this->strategy_;
-        this->strategy_ = strategy;
+        delete this->_affichage;
+        this->_affichage = strategy;
     }
 
 
