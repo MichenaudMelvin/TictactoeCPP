@@ -1,5 +1,5 @@
-#ifndef JEUGRILLE_
-#define JEUGRILLE_
+#ifndef JEUGRILLE_H
+#define JEUGRILLE_H
 
 #include "Grille.h"
 #include <string>
@@ -10,18 +10,15 @@ class JeuGrille{
         Grille _grilleDeJeu;
         int _numeroTour;
         char _symboleCourant;
-        int _nombreColonne;
-        int _nombreLigne;
 
     public:
         JeuGrille(){}
         virtual void afficheGrille(){}
         virtual void ajouteSymbole(int x, int y){}
-        virtual bool testeVictoireVerticale(){}
-        virtual bool testeVictoireHorizontale(){}
-        virtual bool testeVictoireDiagonale(){}
-        virtual bool testeJeuNul(){}
-        virtual char getSymboleCourant(){}
+        virtual bool testeVictoireVerticale(){return false;}
+        virtual bool testeVictoireHorizontale(){return false;}
+        virtual bool testeVictoireDiagonale(){return false;}
+        virtual bool testeJeuNul(){return false;}
 
         virtual void finTour(){}
 

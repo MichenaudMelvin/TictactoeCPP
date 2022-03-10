@@ -2,16 +2,17 @@
 #define GRILLE_H
 
 #include <string>
+#include <iostream>
+#include "AffStrategy.h"
 #include <vector>
 
 class Grille{
-
     private:
-
         // on considèrera que les 3 premières cases sur la 1ere ligne : (0,0) (0,1) (0,2)
         // les 3 suivantes sont la 2nde ligne : (1,0) (1,1) (1,2)
         // les 3 suivantes de la 3e ligne : (2,0) (2,1) (2,2)
         std::vector<char> _tableau;
+        AffStrategy *_affichage;
         int _nombreColonnes;
         int _nombreLignes;
         
@@ -19,7 +20,7 @@ class Grille{
         char getContent(int x, int y); 
         // renvoie le contenu de la case de coordonnées x,y
 
-        bool setContent(int x, int y, char nouveauContenu); 
+        void setContent(int x, int y, char nouveauContenu); 
         // ajoute un contenu dans une case de coordonnées x,y
         // le contenu est un entier non nul
 
@@ -28,7 +29,11 @@ class Grille{
 
         void affiche();
         // affiche la grille conformément au système de coordonnées
-        
+
+        void selectStrat();
+
+        void set_strategy(AffStrategy *strategy);
+
         Grille();
         // initialise la grille avec les cases toutes à 0
         Grille(int nbColonnes, int nbLignes);
