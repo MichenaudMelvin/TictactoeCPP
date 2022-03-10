@@ -4,6 +4,7 @@
 #include "Affichage.cpp"
 #include "JeuGrille.h"
 #include <iostream>
+#include <math.h>
 #include <string>
 
 int main(){
