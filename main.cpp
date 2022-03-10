@@ -23,6 +23,7 @@ int main(){
         
         jeu->afficheGrille();
         std::cin >> numeroCase;
+
         if(numeroCase==-1 || numeroCase==-2){
             jeu->changeModeAffichage(numeroCase);
             std::cin >> numeroCase;
@@ -33,9 +34,7 @@ int main(){
         partiegagnee = jeu->testeVictoireDiagonale() || jeu->testeVictoireHorizontale() || jeu->testeVictoireVerticale();
         jeu->finTour();
 
-
     }
-    
 
     return 0;
 }

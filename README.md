@@ -44,3 +44,8 @@ AffStrategy <-- AffichageA
 AffStrategy <-- AffichageB
 
 ```
+# State
+
+- State 1 : jouer au milieu (si joue en 1er uniquement)
+- State 2 : Jouer aléatoirement
+- State 3 : empecher de gagner

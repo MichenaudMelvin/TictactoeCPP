@@ -66,4 +66,14 @@
        }
    }
 
+   void Tictactoe::changeIAState(){
+       if(_numeroTour == 0){
+           IA = new StateIATicTacToe_1();
+       } else if(_numeroTour > 1){
+           IA = new StateIATicTacToe_2();
+       }
+
+       // rajouter les 3eme states en fonctions des placement du joueur
+   }
+
 #endif

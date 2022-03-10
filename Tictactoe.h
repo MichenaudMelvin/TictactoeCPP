@@ -3,12 +3,14 @@
 
 #include "Grille.h"
 #include "JeuGrille.h"
+#include "StateIATicTacToe.h"
 #include <string>
 
 class Tictactoe : public JeuGrille{
 
     private:
         Grille _grilleDeJeu;
+        StateIATicTacToe *IA;
         int _numeroTour;
         char _symboleCourant;
 
@@ -23,6 +25,7 @@ class Tictactoe : public JeuGrille{
 
         void finTour();
         void changeModeAffichage(int numeroStrat);
+        void changeIAState();
 
 };
 
