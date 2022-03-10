@@ -6,6 +6,14 @@
 #include "AffStrategy.h"
 #include <vector>
 
+class StratAffichage
+{
+public:
+    virtual ~StratAffichage() {}
+    virtual void execute(std::vector<char> tab, int x, int y) const = 0;
+};
+
+
 class Grille{
     private:
         // on considèrera que les 3 premières cases sur la 1ere ligne : (0,0) (0,1) (0,2)
@@ -15,6 +23,7 @@ class Grille{
         AffStrategy *_affichage;
         int _nombreColonnes;
         int _nombreLignes;
+        StratAffichage *strategy_;
         
     public:
         char getContent(int x, int y); 
@@ -37,6 +46,9 @@ class Grille{
         Grille();
         // initialise la grille avec les cases toutes à 0
         Grille(int nbColonnes, int nbLignes);
+
+
+        void set_stratAffiche(StratAffichage *strategy);
 };
 
 #endif

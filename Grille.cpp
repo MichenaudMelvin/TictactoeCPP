@@ -6,10 +6,38 @@
 #include "AffichageB.h"
 #include <iostream>
 
-    Grille::Grille() : _nombreColonnes(3), _nombreLignes(3) {
+class ConcreteStrategyA : public StratAffichage
+{
+public:
+    void execute(std::vector<char> tab, int x, int y) const override{
+        for(int j=0;j<y;j++){
+            for(int i=0;i<x;i++){
+                std::cout << tab[i+(j)*x];
+                if(i!=x-1)  std::cout << " | ";
+            }
+            std::cout << std::endl;
+            if(j!=y-1)  std::cout << " ------- " << std::endl;
+        }
+    }
+};
+class ConcreteStrategyB : public StratAffichage
+{
+    void execute(std::vector<char> tab, int x, int y) const override{
+        for(int j=0;j<y;j++){
+            for(int i=0;i<x;i++){
+                std::cout << tab[i+(j)*x];
+                if(i!=x-1)  std::cout << " : ";
+            }
+            std::cout << std::endl;
+            if(j!=y-1)  std::cout << " ******* " << std::endl;
+        }
+    }
+};
+
+    Grille::Grille() : _nombreColonnes(3), _nombreLignes(3) { 
         _tableau = std::vector<char>(9,' ');
-        // selectStrat();
-        resetContent();
+        resetContent(); 
+        strategy_= new ConcreteStrategyA();
     }
     
     Grille::Grille(int nbColonnes, int nbLignes) : _nombreLignes(nbLignes), _nombreColonnes(nbColonnes) {
@@ -26,26 +54,7 @@
     }
 
     void Grille::affiche(){
-
-        // if(_affichage.getSeparationVerticale() == "" && _affichage.getSeparationHorizontale() == ""){
-        //     std::string sepVer;
-        //     std::string sepHori;
-
-        //     std::cin >> sepVer;
-        //     _affichage.setSeparationVerticale(sepVer);
-
-        //     std::cin >> sepHori;
-        //     _affichage.setSeparationHorizontale(sepHori);
-        // }
-
-        for(int j=0;j<_nombreLignes;j++){
-            for(int i=0;i<_nombreColonnes;i++){
-                std::cout << this->getContent(i,j);
-                if(i!=_nombreColonnes-1)  std::cout << /*_affichage.execute("Verti")*/ " | ";
-            }
-            std::cout << std::endl;
-            if(j!=_nombreLignes-1)  std::cout << /*_affichage.execute("Hori")*/ " ----- "<< std::endl;
-        }
+        this->strategy_->execute(_tableau,_nombreColonnes,_nombreLignes);
     }
 
     void Grille::selectStrat(){
@@ -80,5 +89,9 @@
 
     void Grille::resetContent(){for(int i=0;i<_nombreLignes*_nombreColonnes;i++) _tableau[i] = ' ';}
 
+    void Grille::set_stratAffiche(StratAffichage *strategy){
+            delete this->strategy_;
+            this->strategy_ = strategy;
+        }
 
 #endif
